@@ -1,0 +1,145 @@
+@import "tailwindcss/components";
+//==============================================================================================
+//
+//  COMPONENTS
+//
+//==============================================================================================
+@layer components {
+  /*----------------------------------------------------------------
+    MAIN
+  ----------------------------------------------------------------*/
+  
+  main {
+    #contact-form {
+      &.confirm {
+        .lead-wrap {
+          >p {
+            @apply text-20ptr md:text-30ptr font-medium;
+          }
+        }
+        form {
+          @apply gap-y-[20px] md:gap-y-[40px];
+          >.row {
+            @apply border-solid border-b-[1px] border-gray-300 pb-4;
+            >p {
+              @apply text-14ptr md:text-17ptr;
+            }
+            >.preferred-date {
+              @apply flex flex-col md:flex-row gap-x-[30px];
+              >div {
+                @apply flex gap-x-[15px];
+                >span {
+                  @apply font-medium;
+                }
+              }
+            }
+          }
+          >.notice {
+            @apply flex justify-center items-center;
+            >p {
+              @apply text-14ptr md:text-17ptr;
+            }
+          }
+          >.button-wrap {
+            @apply mt-[25px] md:mt-[50px];
+          }
+        }
+      }
+      .lead-wrap {
+        @apply py-[20px] md:py-[30px] mb-[30px] md:mb-[90px] gap-y-[20px] md:gap-y-[30px];
+        >p {
+          @apply text-14ptr md:text-15ptr leading-loose;
+        }
+      }
+      form {
+        @apply flex flex-col gap-y-[40px] w-full xl:w-[60%];
+        >.row {
+          &.invalid {
+            @apply items-start;
+            input, textarea {
+              @apply border-red-500;
+            }
+          }
+          &.valid {
+            input, textarea {
+              @apply border-lightblue border-[2px];
+            }
+          }
+          @apply flex flex-col lg:flex-row justify-center items-center w-full;
+          .error {
+            @apply text-[90%] text-red-500 font-medium;
+          }
+          >p {
+           @apply flex items-center w-full lg:w-[20%] xl:w-[25%] text-14ptr md:text-17ptr font-medium whitespace-nowrap mb-2 lg:mb-0;
+          }
+          >div {
+            @apply md:flex-1 text-14ptr md:text-17ptr w-full;
+            .preferred-date {
+              @apply flex flex-col lg:flex-row gap-x-[10px] gap-y-[10px];
+              >p {
+                @apply flex items-center gap-x-[10px] text-14ptr md:text-17ptr;
+                >span {
+                  @apply font-medium whitespace-nowrap;
+                }
+                >input {
+                  @apply text-center max-w-[80px];
+                }
+              }
+            }
+            &.checkbox-wrap {
+              @apply h-full mt-1;
+              >label {
+                @apply inline-flex cursor-pointer h-full mr-6;
+                >span {
+                  @apply flex h-full font-medium leading-none my-[1px];
+                }
+              }
+            }
+          }
+        }
+        >.button-wrap {
+          @apply flex justify-between mt-[20px] md:mt-[100px];
+        }
+        input[type=text], input[type=email], input[type=number], textarea {
+          @apply border-gray-200/40 border-solid border-2 w-full py-2 px-3 text-gray-600 placeholder-gray-400/60;
+          &:focus {
+            @apply border-gray-200 outline-none;
+          }
+        }
+        input[type=checkbox], input[type=radio] {
+          @apply border-gray-200/40 border-solid border-2 w-[20px] h-[20px] mr-2;
+        }
+        textarea {
+          @apply min-h-[300px];
+        }
+      }
+      .button-submit {
+        @apply flex items-center gap-x-[10px] md:gap-x-[20px] w-fit;
+        &:hover {
+          @apply opacity-80;
+        }
+        >.icon-circle {
+          @apply border-lightblue;
+        }
+        >span {
+          @apply text-lightblue text-13ptr font-medium duration-100;
+        }
+      }
+      .button-back {
+        @apply flex flex-col items-center gap-y-[10px] md:gap-x-[20px] w-fit;
+        &:hover {
+          @apply opacity-80;
+        }
+        >.icon-circle {
+          @apply border-lightblue;
+          >img {
+            @apply scale-x-[-1];
+          }
+        }
+        >span {
+          @apply text-lightblue text-13ptr font-medium duration-100 block;
+        }
+      }
+    }
+  }
+}

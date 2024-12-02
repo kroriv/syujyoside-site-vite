@@ -1,0 +1,376 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+//==============================================================================================
+//
+//  SUPPORTS
+//
+//==============================================================================================
+@supports (-webkit-touch-callout: none) {
+  html{
+    height: -webkit-fill-available;
+  }
+  body {
+    min-height: 100vh;
+    height: -webkit-fill-available;
+  }
+}
+
+@layer base {
+  @font-face {
+    font-family: "小塚ゴシック Pro R";
+    src: url("/assets/fonts/KozGoPro-Regular.otf") format("opentype");
+    font-weight: normal; /* 適宜変更 */
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "AvenueNext Regular";
+    src: url("/assets/fonts/AvenirNext-Regular.ttf") format("truetype");
+    font-weight: normal; /* 適宜変更 */
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "AvenueNext UltraLight";
+    src: url("/assets/fonts/AvenirNext-UltraLight.ttf") format("truetype");
+    font-weight: normal; /* 適宜変更 */
+    font-style: normal;
+  }
+}
+
+//==============================================================================================
+//
+//  COMPONENTS
+//
+//==============================================================================================
+@layer components {
+  
+  /* ==========================================================================
+    Base
+  ========================================================================== */
+  
+  // safari 文字落ちバグ
+  _::-webkit-full-page-media, _:future, :root body {
+    @apply [font-feature-settings:"pkna"];
+  }
+  
+  *,*:before,*:after {
+    @apply box-border;
+  }
+  
+  /* スクロールバー全体の幅を設定 */
+  ::-webkit-scrollbar {
+    width: 8px; /* 横スクロールバーの高さも変更 */
+    height: 8px;
+  }
+
+  /* スクロールバーの背景 */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  /* スクロールバーのつまみ部分 */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px; /* 丸みを追加 */
+  }
+
+  /* ホバー時のつまみ部分 */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+  
+  body {
+    @apply relative m-0 overflow-x-hidden overflow-y-scroll text-black text-16ptr md:text-20ptr text-justify font-notosansjp font-normal leading-[1.6] tracking-wider;
+    overscroll-behavior-y: none;
+    font-feature-settings: "palt";
+  }
+  
+  section {
+    @apply my-auto mx-auto;
+  }
+  .container {
+    @apply mx-auto;
+  }
+  
+  
+  /*----------------------------------------------------------------
+    HEADER
+  ----------------------------------------------------------------*/
+  header {
+    @apply absolute top-0 w-full z-30 opacity-0;
+    >.wrap {
+      @apply flex flex-row justify-between items-center px-[20px] md:px-[40px] py-[20px] max-w-full;
+      >h1 {
+        >a {
+          &:hover {
+            @apply opacity-50;
+          }
+          > img {
+            @apply h-[22px];
+          }
+        }
+      } 
+    }
+  }
+  
+  footer {
+    @apply bg-lightblue w-full h-full py-[50px];
+    >.wrap {
+      @apply max-h-[460px] flex flex-col;
+      .top-wrap {
+        @apply flex justify-start items-center max-h-[350px];
+        >.navigator {
+          @apply flex md:justify-between w-full flex-wrap h-auto py-[30px] md:py-[60px] xl:py-[120px];
+          >.navs {
+            @apply hidden xl:flex gap-[30px] flex-wrap;
+            >a {
+              @apply text-white;
+              &:hover {
+                @apply opacity-50;
+              }
+            }
+          }
+        }
+      }
+      .bottom-wrap {
+        @apply flex flex-col gap-y-[24px];
+        >.copyright {
+          @apply text-white text-11ptr;
+        }
+      }
+    }
+  }
+  
+  /*----------------------------------------------------------------
+    MAIN
+  ----------------------------------------------------------------*/
+  
+  main {
+    @apply overflow-hidden;
+    >section {
+      @apply py-[60px] xl:py-[200px];
+      .button {
+        @apply block w-fit mx-auto xl:ml-0 px-14 py-1 border-[1px] border-solid border-ultralightblue rounded-full;
+        &:hover {
+          @apply bg-ultralightblue;
+        }
+        >span {
+          @apply text-18ptr leading-none;
+        }
+      }
+      .button-v1 {
+        @apply flex items-center gap-x-[10px] md:gap-x-[20px] w-fit;
+        &:hover {
+          @apply opacity-80;
+        }
+        >.icon-circle {
+          @apply border-lightblue;
+        }
+        >span {
+          @apply text-lightblue text-13ptr font-medium duration-100;
+        }
+      }
+      .button-v2 {
+        @apply flex flex-col items-center gap-y-[10px] md:gap-x-[20px] w-fit;
+        &:hover {
+          @apply opacity-80;
+        }
+        >.icon-circle {
+          @apply border-lightblue;
+        }
+        >span {
+          @apply text-lightblue text-13ptr font-medium duration-100 block;
+        }
+      }
+      .icon-circle {
+        @apply flex justify-center items-center w-[60px] md:w-[100px] h-[60px] md:h-[100px] border-[2px] border-solid rounded-full;
+        &.icon-arrow {
+          >img {
+            @apply h-[8px];
+          }
+        }
+      }
+    }
+    #navi {
+      @apply hidden xl:flex;
+      >.wrap {
+        @apply max-w-full;
+      }
+    }
+    #contact {
+      @apply bg-[url(/assets/images/contact@2x.webp)] aspect-[3360/1460] bg-cover bg-no-repeat relative;
+      &:before {
+        @apply content-[""] bg-black/30 absolute top-0 left-0 w-full h-full z-0;
+      }
+      >.wrap {
+        @apply relative z-10;
+        >.h2-v1 {
+          >span {
+            @apply text-white;
+          }
+          >h2 {
+            @apply text-white;
+          }
+        }
+        >.lead {
+          @apply text-white text-10ptr md:text-12ptr mt-[20px] xl:mt-[50px];
+        }
+        >.icon-arrow {
+          @apply absolute inset-y-0 my-auto right-4 xl:right-0;
+          &:hover {
+            @apply opacity-80 bg-white;
+          }
+        }
+      }
+    }
+    &#sub {
+      #navi {
+        @apply flex;
+        >.wrap {
+          >.navs {
+            @apply hidden xl:flex;
+          }
+        }
+      }
+      .head {
+        @apply bg-white pt-[50px];
+      }
+    }
+  }
+  .wrap {
+    @apply flex flex-col justify-center max-w-[1280px] h-full mx-auto px-[20px] md:px-[40px] 2xl:px-0;
+    .h2-v1 {
+      @apply flex flex-col justify-center gap-y-0 md:gap-y-2 w-full;
+      >span {
+        @apply text-lightblue text-10ptr md:text-13ptr font-medium mb-2 block;
+      }
+      h2 {
+        @apply text-gray text-49ptr md:text-64ptr xl:text-98ptr font-avenuenextultralight leading-none tracking-tighter -ml-1 md:-ml-2 xl:-ml-4;
+      }
+    }
+    .h2-v2 {
+      @apply flex flex-col justify-center items-center gap-y-2 w-full;
+      >span {
+        @apply text-gray text-10ptr md:text-20ptr block;
+      }
+      >h2 {
+        @apply text-gray text-15ptr md:text-30ptr leading-none tracking-[0.30rem] whitespace-nowrap;
+      }
+    }
+  }
+  
+  .logo {
+    @apply flex justify-center items-center h-full z-[1];
+    &:hover {
+      @apply opacity-50;
+    }
+    >img {
+      @apply h-[22px];
+    }
+  }
+  
+  .navigator {
+    @apply items-center h-[80px] relative;
+    >.wrap {
+      @apply flex flex-row justify-start items-start px-[20px] xl:px-[40px] w-full h-full;
+      >.navs {
+        @apply absolute inset-0 flex justify-center items-center gap-x-[30px] w-full h-full text-black-900 text-18ptr font-kozukagothicpro leading-none tracking-widest z-[0];
+        >a {
+          @apply flex items-center h-full;
+          &:hover {
+            @apply text-lightblue;
+          }
+          &.current {
+            @apply text-lightblue;
+          }
+        }
+      }
+    }
+  }
+  
+  .social-icons {
+    @apply hidden xl:flex gap-[12px] md:gap-[20px] h-[20px] md:h-[24px];
+    >a {
+      &:hover {
+        @apply opacity-50;
+      }
+      > img {
+        @apply h-full;
+      }
+    }
+  }
+  
+  .loading {
+    @apply absolute inset-0 z-20 flex flex-col justify-center items-center h-full;
+    .spinner {
+      @apply flex items-center justify-center;
+      >p {
+        @apply w-5 md:w-10 h-5 md:h-10 border-2 md:border-4 border-t-transparent rounded-full animate-spin border-white;
+      }
+    }
+  }
+  
+  .original-gradient {
+    background-image: linear-gradient(120deg, #deeaf6, rgba(255, 255, 255, 0)), linear-gradient(185deg, #dcebf3, rgba(255, 255, 255, 0)), linear-gradient(340deg, #c3e5fa, rgba(255, 255, 255, 0));
+  }
+  
+  .lazyload {
+    -webkit-transition: opacity 3s;
+    transition: opacity 3s;
+  }
+  
+  .menu-container {
+    @apply fixed top-0 right-0 z-[100] w-[80px] md:w-[100px] h-[80px] md:h-[100px] block xl:hidden;
+    .hamburger {
+      @apply bg-none border-none cursor-pointer p-[10px] z-10 absolute top-[10px] left-[10px];
+      &.open {
+        .line {
+          &:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+          }
+          &:nth-child(2) {
+            opacity: 0;
+          }
+          &:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+          }
+        }
+      }
+    }
+    
+    .line {
+      @apply bg-gray w-[30px] h-[3px] mx-0 my-[6px] transition-[transform_0.3s,opacity_0.3s];
+    }
+    
+    .drawer {
+      @apply fixed -bottom-full left-0 w-full h-full bg-lightblue text-white flex flex-col justify-center items-center z-[9] transition-[bottom_0.3s];
+      &.open {
+        @apply bottom-0;
+      }
+      >.wrap {
+        @apply gap-y-[30px];
+        >.logo {
+          @apply h-auto mb-[10px];
+        }
+        >.navs {
+          @apply flex flex-col gap-y-[20px];
+          >a {
+            @apply text-center text-20ptr w-full;
+            &:hover {
+              @apply opacity-60;
+            }
+          }
+        }
+        >.social-icons {
+          @apply flex items-center justify-center gap-x-[20px] h-[24px] mt-[20px];
+          >a {
+            @apply h-full;
+            >img {
+              @apply h-full;
+            }
+          }
+        }
+      }
+    }
+  }
+}

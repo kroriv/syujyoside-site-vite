@@ -1,0 +1,38 @@
+.embla {
+  @apply m-auto;
+  --slide-height: 100%;
+  --slide-spacing: 0rem;
+  --slide-size: 100%;
+}
+.embla__viewport {
+  @apply overflow-hidden;
+}
+.embla__container {
+  @apply flex ml-[calc(var(--slide-spacing)*-1)];
+  touch-action: pan-y pinch-zoom;
+}
+.embla__slide {
+  transform: translate3d(0, 0, 0);
+  flex: 0 0 var(--slide-size);
+  min-width: 0;
+  padding-left: var(--slide-spacing);
+}
+.embla__controls {
+  @apply w-full mt-2;
+}
+.embla__dots {
+  @apply flex flex-wrap justify-center items-center;
+}
+.embla__dot {
+  @apply inline-flex items-center justify-center rounded-full w-[40px] h-[40px] cursor-pointer border-none p-0 m-0 bg-transparent;
+  -webkit-appearance: none;
+  appearance: none;
+  touch-action: manipulation;
+  text-decoration: none;
+}
+.embla__dot:after {
+  @apply bg-gray-200 w-[10px] h-[10px] rounded-full flex items-center content-[''];
+}
+.embla__dot--selected:after {
+  @apply bg-[#e4592a];
+}

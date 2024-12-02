@@ -1,0 +1,61 @@
+@import "tailwindcss/components";
+//==============================================================================================
+//
+//  COMPONENTS
+//
+//==============================================================================================
+@layer components {
+  /*----------------------------------------------------------------
+    MAIN
+  ----------------------------------------------------------------*/
+  
+  main {
+    #concept {
+      >.img-wrap {
+        @apply max-w-full px-0 aspect-[840/263] mb-[100px] bg-lightblue relative;
+        >img {
+          @apply opacity-0;
+        }
+      }
+      >.content-wrap {
+        @apply flex relative;
+        &:before {
+          @apply content-[''] absolute top-0 left-0 w-[42%] h-[680px] bg-[#e6e7e7]/50 z-0;
+        }
+        >.wrap {
+          @apply flex-col-reverse md:flex-row gap-y-[40px];
+        }
+        .left-wrap {
+          @apply md:flex-1 flex flex-row-reverse relative;
+          >.profile {
+            @apply w-full md:w-[525px] h-[450px] md:h-[750px] bg-gray-250 md:absolute md:-top-[150px] md:right-[8%] opacity-0;
+          }
+        }
+        .right-wrap {
+          @apply md:flex-1;
+          >.message {
+            @apply flex flex-col md:gap-y-[80px] w-full relative;
+            >h3 {
+              @apply text-gray-900 text-30ptr leading-none tracking-[0.36rem] py-[50px];
+            }
+            >div {
+              @apply flex flex-col gap-y-[40px];
+              >p {
+                @apply text-gray-900 text-15ptr leading-[2.3] tracking-widest;
+              }
+              &.signature {
+                @apply gap-y-[30px];
+                >p {
+                  @apply leading-[2.0];
+                }
+                .name {
+                  @apply text-21ptr;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

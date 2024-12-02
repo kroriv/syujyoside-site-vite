@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="ja">
+  <head prefix="og: https://ogp.me/ns#">
+    <title>COTACT | SYUJO_SIDE</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content=""/>
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link rel="stylesheet" type="text/css" href="/styles/style.scss"/>
+    <link rel="stylesheet" type="text/css" href="/styles/contact.scss"/>
+    <link rel="icon" type="image/svg+xml" href=""/>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@200;300;400;500;600;700&family=Noto+Serif+JP:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@200;300;400;500;600;700&family=Noto+Serif+JP:wght@400;500;600;700&display=swap"></noscript>
+  </head>
+  <body>
+    
+    <main id="sub">
+      
+      <!-- Navigator -->
+      <nav id="navi" class="navigator">
+        <div class="wrap">
+          <a class="logo" href="/">
+            <img src="/assets/images/logo-b@2x.webp" alt="SYUJO_SIDE" loading="lazy"/>
+          </a>
+          <div class="navs">
+            <a href="/concept/">CONCEPT</a>
+            <a href="/#service">SERVICE</a>
+            <a href="/#movie">MOVIE</a>
+            <a href="/column/">COLUMN</a>
+            <a href="/contact/">CONTACT</a>
+            <a href="/#company">COMPANY</a>
+            <a href="https://google.com" target="_blank" rel="noopener noreferrer">STORE</a>
+          </div>
+        </div>
+      </nav><!-- Navigator -->
+      
+      <!-- ContactForm -->
+      <section id="contact-form" class="head">
+        <div class="wrap mb-8">
+          <!-- H2 -->
+          <div class="h2-v1 opacity-0">
+            <span>お問合わせ</span>
+            <h2>CONTACT</h2>
+          </div><!-- H2 -->
+        </div>
+        <div class="wrap lead-wrap">
+          <p>
+            当社へのお問合わせや、コンサルティングの相談ご予約は下記のフォームより承っております。<br/>
+            相談のご予約に関しましては、こちらからの返信が届いた時点でご予約完了とさせていただきます。<br/>
+            24時間経っても返信が届かない場合は、お手数お掛けいたしますが、再度ご連絡ください。
+          </p>
+          <p>※ご提供いただきましたお客様の個人情報は、お問い合わせの目的のみで利用します。</p>
+        </div>
+        <div class="wrap">
+          <form>
+            <div class="row">
+              <p>カテゴリー</p>
+              <div class="checkbox-wrap">
+                <label><input type="radio" name="category" value="お問合わせ"/><span>お問合わせ</span></label>
+                <label><input type="radio" name="category" value="相談のご予約"/><span>相談のご予約</span></label>
+                <p class="error"></p>
+              </div>
+            </div>
+            <div class="row">
+              <p>お名前</p>
+              <div>
+                <input type="text" name="fullname" placeholder="福井　太郎" area-label="お名前" value=""/>
+                <p class="error"></p>
+              </div>
+            </div>
+            <div class="row">
+              <p>メールアドレス</p>
+              <div>
+                <input type="email" name="email" placeholder="someone@examle.com" area-label="メールアドレス" value=""/>
+                <p class="error"></p>
+              </div>
+            </div>
+            <div class="row">
+              <p>電話番号</p>
+              <div>
+                <input type="text" name="phonenumber" placeholder="0000-00-0000" area-label="電話番号" value=""/>
+                <p class="error"></p>
+              </div>
+            </div>
+            <div class="row">
+              <p>ご予約希望日</p>
+              <div>
+                <div class="preferred-date">
+                  <p>
+                    <span>第1希望</span>
+                    <input type="number" name="preferred_1_m" aria-label="ご予約希望日" min="1" max="12" value=""/>
+                    <span>月</span>
+                    <input type="number" name="preferred_1_d" aria-label="ご予約希望日" min="1" max="31" value=""/>
+                    <span class="mr-6">日</span>
+                  </p>
+                  <p>
+                    <span>第2希望</span>
+                    <input type="number" name="preferred_2_m" aria-label="ご予約希望日" min="1" max="12" value=""/>
+                    <span>月</span>
+                    <input type="number" name="preferred_2_d" aria-label="ご予約希望日" min="1" max="31" value=""/>
+                    <span>日</span>
+                  </p>
+                </div>
+                <p class="error"></p>
+              </div>
+            </div>
+            <div class="row">
+              <p>希望時間</p>
+              <div class="checkbox-wrap">
+                <label><input type="radio" name="preferred_time" value="11:00～"/><span>11:00～</span></label>
+                <label><input type="radio" name="preferred_time" value="12:00～"/><span>12:00～</span></label>
+                <label><input type="radio" name="preferred_time" value="13:00～"/><span>13:00～</span></label>
+                <p class="error"></p>
+              </div>
+            </div>
+            <div class="row !items-stretch">
+              <p class="!items-start">内容・備考</p>
+              <div>
+                <textarea name="content" title="内容・備考"></textarea>
+                <p class="error"></p>
+              </div>
+            </div>
+            
+            <input type="hidden" name="fingerprint" value=""/>
+            
+            <div class="button-wrap">
+              <button class="opacity-0 h-0">a</button>
+              <button type="submit" class="button-v2 group">
+                <p class="icon-circle icon-arrow group-hover:bg-ultralightblue">
+                  <img src="/assets/images/icon-arrow@2x.webp" alt="矢印アイコン" class="group-hover:brightness-0 group-hover:invert-[1]"/>
+                </p>
+                <span>確認画面へ</span>
+              </button>
+            </div>
+          </form>
+        </div>
+
+      </section><!-- ContactForm -->
+      
+      <!-- Contact -->
+      <section id="contact">
+        <div class="wrap">
+          <!-- H2 -->
+          <div class="h2-v1">
+            <span>お問合わせ</span>
+            <h2>CONTACT</h2>
+          </div><!-- H2 -->
+          <p class="lead">当社へのお問い合わせや、コンサルティングのご相談ご予約はこちらから</p>
+          
+          <a href="/contact" class="icon-circle icon-arrow group">
+            <img src="/assets/images/icon-arrow@2x.webp" alt="矢印アイコン" class="brightness-0 invert group-hover:invert-0 group-hover:filter-none"/>
+          </a>
+        </div>
+      </section><!-- Contact -->
+    </main>
+    
+    <footer>
+      <div class="wrap">
+        <div class="top-wrap">
+          <!-- Navigator -->
+          <nav class="navigator">
+            <a href="/" class="logo">
+              <img src="/assets/images/logo-w@2x.webp" alt="SYUJO_SIDE" />
+            </a>
+            <div class="navs">
+              <a href="/concept/">CONCEPT</a>
+              <a href="/#service">SERVICE</a>
+              <a href="/#movie">MOVIE</a>
+              <a href="/column/">COLUMN</a>
+              <a href="/contact/">CONTACT</a>
+              <a href="/#company">COMPANY</a>
+              <a href="https://google.com" target="_blank" rel="noopener noreferrer">STORE</a>
+            </div>
+          </nav><!-- Navigator -->
+        </div>
+        <div class="bottom-wrap">
+          <div class="social-icons">
+            <a href="">
+              <img src="/assets/images/icon-facebook@2x.webp" alt="Facebook" />
+            </a>
+            <a href="">
+              <img src="/assets/images/icon-instagram@2x.webp" alt="Instagram" />
+            </a>
+            <a href="">
+              <img src="/assets/images/icon-line@2x.webp" alt="LINE"/>
+            </a>
+            <a href="">
+              <img src="/assets/images/icon-youtube@2x.webp" alt="YouTube"/>
+            </a>
+            <a href="">
+              <img src="/assets/images/icon-x@2x.webp" alt="X"/>
+            </a>
+          </div>
+          <p class="copyright">Copyright (c) SYUJO_SIDE All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+    
+    <div class="menu-container">
+      <button id="hamburger" class="hamburger" title="ハンバーガーメニュー">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </button>
+      <nav class="drawer" id="drawer">
+        <div class="wrap">
+          <a href="/" class="logo">
+            <img src="/assets/images/logo-w@2x.webp" alt="SYUJO_SIDE" loading="lazy"/>
+          </a>
+          <div class="navs">
+            <a href="/concept/">CONCEPT</a>
+            <a href="/#service">SERVICE</a>
+            <a href="/#movie">MOVIE</a>
+            <a href="/column/">COLUMN</a>
+            <a href="/contact/">CONTACT</a>
+            <a href="/#company">COMPANY</a>
+            <a href="https://google.com" target="_blank" rel="noopener noreferrer">STORE</a>
+          </div>
+          <div class="social-icons">
+            <a href="">
+              <img src="/assets/images/icon-facebook@2x.webp" alt="Facebook" />
+            </a>
+            <a href="">
+              <img src="/assets/images/icon-instagram@2x.webp" alt="Instagram" />
+            </a>
+            <a href="">
+              <img src="/assets/images/icon-line@2x.webp" alt="LINE"/>
+            </a>
+            <a href="">
+              <img src="/assets/images/icon-youtube@2x.webp" alt="YouTube"/>
+            </a>
+            <a href="">
+              <img src="/assets/images/icon-x@2x.webp" alt="X"/>
+            </a>
+          </div>
+        </div>
+      </nav>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/motion@11.11.13/dist/motion.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/validator@13.12.0/validator.min.js"></script>
+    <script src="/assets/scripts/common.js"></script>
+    <script src="/assets/scripts/contact.js"></script>
+  </body>
+</html>
