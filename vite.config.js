@@ -2,6 +2,7 @@ import { resolve } from "path";
 import { defineConfig } from "vite";
 import liveReload from "vite-plugin-live-reload";
 import { findAllFiles } from "./custom.build.functions";
+import path from "path";
 
 // ROOT
 const root = resolve(__dirname, "./src");
@@ -14,6 +15,9 @@ export default defineConfig(async ({ command, mode }) => {
   });
   */
   const rollupOptionsInput = await findAllFiles("./src", ".html");
+  
+  console.log(rollupOptionsInput);
+  
   return {
     root: root,
     base: "/",
@@ -38,13 +42,16 @@ export default defineConfig(async ({ command, mode }) => {
             }
             // ビルド時のCSS名を明記してコントロールする
             if(extType === "css") {
-              return `assets/styles/[hash].css`;
+              //return `assets/styles/[hash].css`;
+              return `assets/styles/[name].css`;
             }
             return `assets/${extType}/[name][extname]`;
           },
           entryFileNames: `assets/js/[name]-[hash].js`,
           //chunkFileNames: `assets/js/[name]-[hash].js`,
-          manualChunks: () => "[hash].js",
+          manualChunks: (id) => {
+            console.log(id);
+          }
         }
       },
     },

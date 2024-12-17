@@ -28,7 +28,7 @@
         .left-wrap {
           @apply md:flex-1 flex flex-row-reverse relative;
           >.profile {
-            @apply w-full md:w-[525px] h-[450px] md:h-[750px] bg-gray-250 md:absolute md:-top-[150px] md:right-[8%] opacity-0;
+            @apply w-full md:w-[525px] bg-gray-250 md:absolute md:-top-[150px] md:right-[8%] opacity-0;
           }
         }
         .right-wrap {

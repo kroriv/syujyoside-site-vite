@@ -92,12 +92,11 @@
     @apply mx-auto;
   }
   
-  
   /*----------------------------------------------------------------
     HEADER
   ----------------------------------------------------------------*/
   header {
-    @apply absolute top-0 w-full z-30 opacity-0;
+    @apply fixed top-0 w-full z-30 opacity-0;
     >.wrap {
       @apply flex flex-row justify-between items-center px-[20px] md:px-[40px] py-[20px] max-w-full;
       >h1 {
@@ -146,7 +145,6 @@
   ----------------------------------------------------------------*/
   
   main {
-    @apply overflow-hidden;
     >section {
       @apply py-[60px] xl:py-[200px];
       .button {
@@ -225,7 +223,7 @@
     }
     &#sub {
       #navi {
-        @apply flex;
+        @apply flex xl:fixed top-0 left-0 w-full z-[1000];
         >.wrap {
           >.navs {
             @apply hidden xl:flex;
@@ -233,7 +231,7 @@
         }
       }
       .head {
-        @apply bg-white pt-[50px];
+        @apply bg-white pt-[50px] xl:pt-[130px];
       }
     }
   }
@@ -320,9 +318,9 @@
   }
   
   .menu-container {
-    @apply fixed top-0 right-0 z-[100] w-[80px] md:w-[100px] h-[80px] md:h-[100px] block xl:hidden;
+    @apply fixed top-0 right-0 w-[80px] md:w-[100px] h-[80px] md:h-[100px] block xl:hidden z-[2000];
     .hamburger {
-      @apply bg-none border-none cursor-pointer p-[10px] z-10 absolute top-[10px] left-[10px];
+      @apply bg-none border-none cursor-pointer p-[10px] absolute top-[10px] left-[10px] z-[3000];
       &.open {
         .line {
           &:nth-child(1) {

@@ -14,6 +14,20 @@ inView("#concept", () => {
   );
 });
 
+inView(".left-wrap", () => {
+  // ProfileAnimation
+  const profile = document.querySelector("#concept .profile");
+  animate(
+    profile,
+    { y:[500, 0] },
+    { duration: 0.75, delay: 0.15, easing: "easeIn" },
+  );
+  animate(
+    profile,
+    { opacity: [0, 1] },
+    { duration: 0.50, delay: 0.50, easing: "easeIn" },
+  );
+}, { margin: "0px 0px -500px 0px" });
 
 //==============================================================================================
 //
@@ -55,13 +69,6 @@ const LoadedAnimator = {
     ).then(() => {
       // Remove Loading
       loading.remove();
-      // ProfileAnimation
-      const profile = document.querySelector("#concept .profile");
-      animate(
-        profile,
-        { y:[2000, 0], opacity: [0, 1] },
-        { duration: 0.25, delay: 0.15, easing: "easeIn" },
-      );
     });
   }
 };

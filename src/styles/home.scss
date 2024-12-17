@@ -23,7 +23,7 @@
       }
     }
     #navi {
-      @apply hidden xl:flex;
+      @apply hidden xl:flex bg-white xl:sticky xl:top-0 z-40;
       >.wrap {
         @apply max-w-full;
       }
@@ -33,7 +33,7 @@
       >.wrap {
         @apply flex flex-col gap-y-[35px] md:gap-y-[70px];
         >.intro {
-          @apply flex flex-col gap-y-[15px] md:gap-y-[40px];
+          @apply flex flex-col gap-y-[15px] md:gap-y-[40px] opacity-0;
           >p {
             @apply text-gray text-22ptr md:text-29ptr leading-none tracking-widest;
           }
@@ -47,7 +47,7 @@
           @apply justify-center items-center;
         }
         >.intro {
-          @apply flex flex-col gap-y-[15px] md:gap-y-[20px] justify-center items-center;
+          @apply flex flex-col gap-y-[15px] md:gap-y-[20px] justify-center items-center opacity-0;
           >p {
             @apply text-gray text-12ptr md:text-24ptr xl:text-29ptr text-center leading-loose tracking-widest;
           }
@@ -55,7 +55,7 @@
         >.circle-wrap {
           @apply flex flex-col gap-y-8 md:flex-row justify-center items-center;
           >.circle {
-            @apply flex flex-col gap-y-[20px] justify-center items-center w-full md:w-[403px] md:h-[403px] py-10 md:py-0 md:rounded-full md:aspect-square bg-gray-100/60;
+            @apply flex flex-col gap-y-[20px] justify-center items-center w-full md:w-[403px] md:h-[403px] py-10 md:py-0 md:rounded-full md:aspect-square bg-gray-100/60 opacity-0;
             >.icon {
               @apply flex justify-center items-center w-[156px] h-[156px] rounded-full bg-white;
             }
@@ -162,7 +162,7 @@
           @apply justify-center items-center;
         }
         >#posts {
-          @apply grid grid-cols-12 w-full gap-[15px] md:gap-[30px];
+          @apply grid grid-cols-12 w-full gap-[15px] md:gap-[30px] opacity-0;
           >a {
             @apply bg-gray-100/60 w-full flex flex-col col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-4 xl:col-span-3 2xl:col-span-3 overflow-hidden;
             .img-wrap {
@@ -204,4 +204,18 @@
       }
     }
   }
+}
+
+.embla__slide {
+  transform: translate3d(0, 0, 0);
+  flex: 0 0 var(--slide-size);
+  min-width: 0;
+  padding-left: var(--slide-spacing);
+}
+.embla__slide__img {
+  border-radius: 1.8rem;
+  display: block;
+  height: var(--slide-height);
+  width: 100%;
+  object-fit: cover;
 }

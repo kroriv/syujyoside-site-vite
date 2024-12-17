@@ -44,7 +44,7 @@ const addDotBtnsAndClickHandlers = (
 };
 
 const onNavButtonClick = (emblaApi) => {
-  const autoplay = emblaApi?.plugins()?.autoplay
+  const autoplay = emblaApi?.plugins()?.autoplay;
   if (!autoplay) return;
   const resetOrStop =
     autoplay.options.stopOnInteraction === false
@@ -53,16 +53,58 @@ const onNavButtonClick = (emblaApi) => {
   resetOrStop();
 };
 
-const OPTIONS = { dragFree: false, loop: true };
+
 const emblaNodes = [
+  document.querySelector("#hero .embla"),
+  document.querySelector("#movie .embla"),
   document.querySelector("#consulting .embla"),
   document.querySelector("#wellness .embla"),
-  document.querySelector("#movie .embla"),
-];
+].filter(node => node);
 
 emblaNodes.map((emblaNode, i) => {
   const viewportNode = emblaNode.querySelector(".embla__viewport");
   const dotsNode = emblaNode.querySelector(".embla__dots");
+  
+  
+  if (i === 0) {
+    const OPTIONS = { dragFree: false, loop: true, duration: 100 };
+    const PLUGINS = [
+      EmblaCarouselAutoplay({ playOnInit: true, delay: 8000, stopOnInteraction: false }), 
+      EmblaCarouselFade({ duration: 4000 })
+    ];
+    const emblaApi = EmblaCarousel(viewportNode, OPTIONS, PLUGINS);
+    emblaApi.on("init", () => {
+      const { autoplay } = emblaApi.plugins();
+      autoplay.play(); // 手動で再生開始
+      console.log(emblaApi.plugins());
+    });
+  }
+  
+  if (i === 1) {
+    const OPTIONS = { dragFree: false, loop: true };
+    const emblaApi = EmblaCarousel(viewportNode, OPTIONS);
+    const removeDotBtnsAndClickHandlers = addDotBtnsAndClickHandlers(
+      emblaApi,
+      dotsNode,
+      onNavButtonClick
+    );
+    emblaApi.on("destroy", removeDotBtnsAndClickHandlers);
+    const videoIframes = viewportNode.querySelectorAll(".embla__slide iframe");
+    function pauseInactiveVideos() {
+      const activeIndex = emblaApi.selectedScrollSnap();
+      videoIframes.forEach((iframe, i2) => {
+        const src = iframe.src;
+        // Pause video by resetting src for inactive slides
+        if (i2 !== activeIndex) {
+          iframe.src = "";
+          iframe.src = src; // Reset src to stop playback
+        }
+      });
+    }
+    emblaApi.on("select", pauseInactiveVideos);
+  }
+  
+  const OPTIONS = { dragFree: false, loop: true };
   const emblaApi = EmblaCarousel(viewportNode, OPTIONS);
   const removeDotBtnsAndClickHandlers = addDotBtnsAndClickHandlers(
     emblaApi,
@@ -71,21 +113,6 @@ emblaNodes.map((emblaNode, i) => {
   );
   emblaApi.on("destroy", removeDotBtnsAndClickHandlers);
   
-  if (i === 2) {
-    const videoIframes = viewportNode.querySelectorAll(".embla__slide iframe");
-    function pauseInactiveVideos() {
-      const activeIndex = emblaApi.selectedScrollSnap();
-      videoIframes.forEach((iframe, i2) => {
-        const src = iframe.src;
-        // Pause video by resetting src for inactive slides
-        if (i2 !== activeIndex) {
-          iframe.src = '';
-          iframe.src = src; // Reset src to stop playback
-        }
-      });
-    }
-    emblaApi.on("select", pauseInactiveVideos);
-  }
 });
 
 
@@ -97,107 +124,180 @@ emblaNodes.map((emblaNode, i) => {
 // Motion
 const { animate, scroll, inView } = Motion;
 
+const header = document.querySelector("header");
+const logo = header.querySelector("h1 img");
+scroll(
+  (offset, info) => {
+    logo.classList.remove("invert");
+    if (info.y.targetOffset <= info.y.current) {
+      logo.classList.add("invert");
+    }
+  },
+  { target: document.getElementById("concept") }  
+)
+
 inView("#concept", () => {
   animate(
     "#concept .intro",
-    { x: [-1000, 0] },
-    { duration: 1.00, delay: 0.50, easing: "easeIn" }
+    { x: [-300, 0] },
+    { 
+      duration: 0.40, 
+      delay: 0.45, 
+      easing: [0.05, 0.95, 0.3, 0.06, 0.56, 1] // 極端に後半で遅くなるカーブ
+    },
   );
   animate(
     "#concept .intro",
     { opacity: [0, 1] },
-    { duration: 0.50, delay: 1.00 }
+    { duration: 0.80, delay: 0.50 },
   );
-});
+}, { margin: "0px 0px -400px 0px" });
 inView("#service", () => {
   animate(
     "#service .intro",
-    { y: [2000, 0], opacity: [0, 1] },
-    { duration: 1.00, delay: 0.50, easing: "easeIn" }
+    { y: [300, 0] },
+    { 
+      duration: 0.40, 
+      delay: 0.45, 
+      easing: [0.05, 0.95, 0.3, 0.06, 0.56, 1] // 極端に後半で遅くなるカーブ
+    }
   );
-});
+  animate(
+    "#service .intro",
+    { opacity: [0, 1] },
+    { duration: 1.00, delay: 0.35, easing: [0.05, 0.95, 0.3, 0.06, 0.56, 1] }
+  );
+}, { margin: "0px 0px -400px 0px" });
 inView("#service .circle-wrap", () => {
+  // 左円
   animate(
     "#service .circle-wrap .circle:first-child",
-    { x: [-2000, 0], opacity: [0, 1] },
-    { duration: 1.00, delay: 0.50, easing: "easeIn" }
+    { x: [-300, 0] },
+    {
+      duration: 0.4, // アニメーション全体を少し長く
+      delay: 0.25,
+      easing: [0.05, 0.95, 0.3, 0.06, 1] // 極端に後半で遅くなるカーブ
+    }
+  );
+  animate(
+    "#service .circle-wrap .circle:first-child",
+    { opacity: [0, 1] },
+    { duration: 0.40, delay: 0.50, easing: "easeOut" }
+  );
+  
+  // 右円
+  animate(
+    "#service .circle-wrap .circle:last-child",
+    { x: [300, 0] },
+    {
+      duration: 0.4, // アニメーション全体を少し長く
+      delay: 0.25,
+      easing: [0.05, 0.95, 0.3, 0.06, 1] // 極端に後半で遅くなるカーブ
+    }
   );
   animate(
     "#service .circle-wrap .circle:last-child",
-    { x: [2000, 0], opacity: [0, 1] },
-    { duration: 1.00, delay: 0.50, easing: "easeIn" }
+    { opacity: [0, 1] },
+    { duration: 0.40, delay: 0.50, easing: "easeOut" }
   );
-});
+}, { margin: "0px 0px -200px 0px" });
+
 inView("#service-contents #consulting", () => {
   animate(
     "#service-contents #consulting .board-wrap",
-    { x: [-2000, 0] },
-    { duration: 1.00, delay: 0.5, easing: "easeIn" }
+    { x: [-300, 0] },
+    { 
+      duration: 0.25, 
+      delay: 0.5, 
+      easing: [0.05, 0.95, 0.3, 0.06, 1] // 極端に後半で遅くなるカーブ
+    }
   );
   animate(
     "#service-contents #consulting .board-wrap",
     { opacity: [0, 1] },
-    { duration: 0.50, delay: 1.00 }
+    { duration: 0.50, delay: 0.50, easing: "easeOut" }
   );
-  
   animate(
     "#service-contents #consulting .embla-wrap",
-    { x: [2000, 0] },
-    { duration: 1.00, delay: 0.5, easing: "easeIn" }
+    { x: [300, 0] },
+    { 
+      duration: 0.25, 
+      delay: 0.5, 
+      easing: [0.05, 0.95, 0.3, 0.06, 1] // 極端に後半で遅くなるカーブ
+    }
   );
   animate(
     "#service-contents #consulting .embla-wrap",
     { opacity: [0, 1] },
-    { duration: 0.50, delay: 1.20 }
+    { duration: 0.40, delay: 0.50, easing: "easeOut" }
   );
-  
   animate(
     "#service-contents #consulting .liner",
     { scaleY: [0, 1] },
-    { duration: 1.00, delay: 0.5, easing: "easeIn" }
+    { duration: 0.80, delay: 0.5, easing: "easeOut" }
   );
-});
+}, { margin: "0px 0px -200px 0px" });
+
 inView("#service-contents #wellness", () => {
   animate(
     "#service-contents #wellness .board-wrap",
-    { x: [2000, 0] },
-    { duration: 1.00, delay: 0.5, easing: "easeIn" }
+    { x: [300, 0] },
+    { 
+      duration: 0.25, 
+      delay: 0.5, 
+      easing: [0.05, 0.95, 0.3, 0.06, 1] // 極端に後半で遅くなるカーブ
+    }
   );
   animate(
     "#service-contents #wellness .board-wrap",
     { opacity: [0, 1] },
-    { duration: 0.50, delay: 1.20 }
+    { duration: 0.50, delay: 0.50, easing: "easeOut" }
   );
-  
   animate(
     "#service-contents #wellness .embla-wrap",
-    { x: [-2000, 0] },
-    { duration: 1.00, delay: 0.5, easing: "easeIn" }
+    { x: [-300, 0] },
+    { 
+      duration: 0.25, 
+      delay: 0.5, 
+      easing: [0.05, 0.95, 0.3, 0.06, 1] // 極端に後半で遅くなるカーブ
+    }
   );
   animate(
     "#service-contents #wellness .embla-wrap",
     { opacity: [0, 1] },
-    { duration: 0.50, delay: 1.00 }
+    { duration: 0.40, delay: 0.50, easing: "easeOut" }
   );
-  
   animate(
     "#service-contents #wellness .liner",
     { scaleY: [0, 1] },
-    { duration: 1.00, delay: 0.5, easing: "easeIn" }
+    { duration: 0.80, delay: 0.5, easing: "easeOut" }
   );
-});
+}, { margin: "0px 0px -400px 0px" });
 inView("#movie", () => {
   animate(
     "#movie .embla-wrap",
-    { y: [2000, 0] },
-    { duration: 1.00, delay: 0.5, easing: "easeIn" }
+    { y: [600, 0] },
+    { duration: 1.00, delay: 0.5, easing: [0.05, 0.95, 0.3, 0.06, 1] }
   );
   animate(
     "#movie .embla-wrap",
     { opacity: [0, 1] },
-    { duration: 1.50, delay: 1.25 }
+    { duration: 1.00, delay: 1.25 }
   );
-});
+}, { margin: "0px 0px -400px 0px" });
+
+inView("#home-column", () => {
+  animate(
+    "#home-column #posts",
+    { y: [300, 0] },
+    { duration: 0.50, delay: 0.5, easing: [0.05, 0.95, 0.3, 0.06, 1] }
+  );
+  animate(
+    "#home-column #posts",
+    { opacity: [0, 1] },
+    { duration: 0.40, delay: 0.80 }
+  );
+}, { margin: "0px 0px -400px 0px" });
 
 
 //==============================================================================================
